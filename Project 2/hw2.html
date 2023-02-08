@@ -1,0 +1,241 @@
+<!DOCTYPE html> 
+
+<html>
+
+<head>
+<title>CSES 132: Programming Project 2</title>
+</head>
+
+<body>
+<h2>Programming Project 2</h2>
+<h3>Due Friday, March 4 at 11:59pm</h3>
+
+<p><em><strong>IMPORTANT:</strong> Read the
+<strong>Do's and Dont's</strong>
+in the <strong>Course Honor Policy</strong> found on Canvas. </em>
+</p>
+
+<h3>I. Overview</h3>
+
+<p>This second programming assignment is to give you practice writing loops and manipulating strings and arrays.  
+<strong>Do not use arays on a problem involving Strings, and do not use Strings on a problem involving arrays.</strong>
+You may use both in the extra credit.
+</p>
+
+
+
+<h3>II. Code Readability (20% of your project grade)</h3>
+
+<p>As with the last project, you are required to have code that is easy for another person to read and understand.
+To accomplish that, the class will have certain rules about how your code should look.</p>
+
+<p><strong>To receive the full readability marks, your code must follow the following guideline:</strong>
+<ul>
+<li>You should place a comment at the top of the file that contains your name
+and a short description of the purpose of the class.</li>
+<li>You should place a <em>short</em> comment before (directly above) each method describing the method.  The comment should
+be only describe <em>what</em> the method does, not <em>how</em> it does it.  Do not simply copy the descriptions
+below for your comments.</li>
+<li>You should place a short comment directly above each field (should you really have any?)
+indicating the purpose of the variable.</li>
+<li>You should place a short comment above or to the right of each local variable explaining the purpose of the variable.  <em>Variables that are only used as loop indexes do not need to have comments.</em></li>
+<li>You should place a short comment above each loop explaining how the loop works.  Ideally, you should list the goal of the 
+loop, any required precondition for the loop, and if you can, a good iteration subgoal for the loop.</li>
+<li>Any other complicated code such as code the has lots of if statements or variables should contain <em>short</em> comments to help the reader.  The comments can either be above the code fragment or to the right, aligned in a column.</li>
+<li>Remember to use good style: everything should be indented nicely, variables should have good names, there should be a blank line between each method.</li>
+</ul></p>
+
+<hr>
+
+<h3>III. Program Testing Document (20% of your project grade)</h3>
+
+<p>As with the previous project, you are required to submit a document demonstrating that you thoroughly tested your program.
+In this case, it means documenting tests for each of the methods listed below.
+If you are unable to complete a method above, you should still
+describe tests that would test the method had it been completed.</p>
+
+<p>Hints for testing loops.  Your tests need to, at the minimum cover the following cases:
+<ol>
+<li><strong>Test 0, test 1, test many:</strong>  This means you have to test cases where the parameters, if they are integers,
+are 0, 1 or some value other than 1.  If the parameters are strings, you have to test strings of length 0, 1, and more than 1.
+If the strings must contain certain data, you need to test cases where they contain 0, 1, and more than 1 of the desired data.</li>
+<li><strong>Test first, last, and middle:</strong>  In cases where you have to search in or modify a string, you need to test
+cases where the item to be found or modified is the first character of the string, the last character of the string, or somewhere
+in the middle of the string.</li>
+</ol></p>
+
+<p><strong>What must go in the report:</strong> For each method below, your report should describe, in English, what &quot;<em>test 0, 1, many</em>&quot;
+and &quot;<em>test first, middle, last</em>&quot; mean for each of the methods.  Then, you should list the specific tests, that you will do, what the expected
+output is, and then (if you completed the method) a cut-and-paste from DrJava showing the actual test. </p>
+
+<p><strong>JUnit</strong>: you recently learned about JUnit in lab.  JUnit will be required for future homeworks, and you are welcome
+to use it with this homework.  If you choose to write JUnit tests for your code,
+you do not need to include the actual tests in your report.  Your JUnit file should include comments with each test that link to the report and indicate what
+you are testing. For example, if your report indicates that the method requires a test with a string of length 0, your JUnit class should have such a test and
+a comment on the test noting that it is the test of a length 0 string that your report described.  Try to organize the JUnit class and report to make it easy for
+a reader to jump back and forth between the report and the tests.</p>
+
+
+
+<hr>
+
+
+<h3>IV. Java Programming (60% of your grade)</h3>
+
+<p><strong>Guidelines for the program</strong>:
+<ul>
+<li>All methods listed below must be <tt>public</tt> and <tt>static</tt>.</li>
+<li>If your code is using a loop to modify or create a string, you need to use the <tt>StringBuilder</tt> class from the API.</li>
+<li>Keep the loops simple but also efficient.  Remember that you want each loop to do only one "task" while also avoiding unnecessary traversals of the data.</li>
+<li>No additional methods are needed.  
+However, you may write additional <em>private</em> helper methods, but you still need to have efficient and simple algorithms. Do not write helper methods that do <em>unnecessary</em>
+traversals of the data.</li>
+<li><strong><em>Important</em></strong>: you must not use either <tt>break</tt> or <tt>continue</tt> in your code.  These two commands almost always are used to compensate for
+a poorly designed loop.  Likewise, you must not write code that mimics what <tt>break</tt> does.  Instead, re-write your loop so that the loop logic does not need break-type behavior.</li>
+<li>While it may be tempting to hunt through the API to find classes and methods that can shorten your code, you may not
+do that.  The first reason is that this homework is an exercise in writing loops, not in using the API.  The second reason is that in a lot of cases, the API methods may shorten the <em>writing</em> of your code but increase its <em>running time</em>.
+The only classes and methods you can use are listed below.</p>
+
+<p>You <em>are allowed</em> to use the following from the Java API:
+<ul><li>class String
+    <ul><li>length</li>
+        <li>charAt</li>
+   </ul></li>
+   <li>class StringBuilder
+   <ul><li>length</li>
+       <li>charAt</li>
+       <li>append</li>
+       <li>toString</li>
+   </ul></li>
+   <li>class Character
+    <ul><li>any method</li>
+   </ul></li>
+</ul>
+</p>
+</ul>
+</p>
+
+
+
+<p>Create a class called <tt>HW2</tt> that contains the following methods:
+<ol>
+<li><p><tt>average</tt>: takes a single array of <tt>double</tt> as input
+and returns a <tt>double</tt>.  The method should return the <em>average</em>
+of all the values in the array.  If there are no values in the array,
+the method should <em>throw a NoSuchElementException</em>.</p>
+<p><tt>NoSuchElementException</tt> is a class in the Java API.  <em>Throwing</em> an exception behaves like <tt>return</tt> in that in stops the method
+and sends a value out, but now the value is on a different <em>channel</em>
+than the return value.  To throw an exception, you use the statement:
+<tt>throw new NoSuchElementException();</tt>.</p>
+<p>
+<pre>
+HW2.average(new double[]{1.1, 1.2, 1.3, 1.4})  ==> 1.25
+HW2.average(new double[0])                     ==> NoSuchElementException
+</pre>
+</p></li>
+
+<li><p><tt>average</tt>: takes a two-dimensional array of 
+<tt>double</tt> as input
+and returns a <tt>double</tt>.  The method should return the <em>average</em>
+of all the values in the array.  If there are no values in the array,
+the method should <em>throw a NoSuchElementException</em>.
+<pre>
+HW2.average(new double[][]{{1.1, 1.2}, {1.3}})  ==> 1.2
+</pre>
+</p></li>
+
+<li><p><tt>countWords</tt>: takes a single <tt>String</tt> parameter and returns an <tt>int</tt>.
+The method will return the number of "words" in the string.  For this and the following methods, define a "word" to be any 
+sequence of consecutive non-whitespace characters.
+A <em>whitespace</em> character is a character such as a space, tab, or return.  For the purpose of this homework,
+we will use only spaces for the whitespace character, but you are welcome to get your code to work for all
+possible whitespace character types.
+<pre>
+HW2.countWords("One fish, two fish, red fish , blue fish !") ==> 10
+</pre>
+</p></li>
+
+<li><p><tt>truncate</tt>: Takes two parameters, a <tt>String</tt> and an <tt>int</tt> and returns a
+<tt>String</tt>.   The <tt>int</tt> parameter is the <em>desired length</em> of the output string.
+The returned <tt>String</tt> is truncated at a word boundary so that it does not exceed the <em>desired length</em>.</p>
+<p>More precisely, if the length of the parameter <tt>String</tt> is smaller than or equal to the desired length,
+the returned <tt>String</tt> should be identical to the parameter <tt>String</tt>.  Otherwise,
+the returned <tt>String</tt> should end right after the last character of a word such that the length of the output
+<tt>String</tt> is as long as possible without exceeding the desired length.
+However, if the first word of the input <tt>String</tt> ends at an index past the desired length,
+the returned <tt>String</tt> should include that word and end immediately after it, even though the resulting string will be
+longer than the desired length.</p>
+<p>As with the previous method, a word is defined as any sequence of consecutive non-whitespace characters.
+<pre>
+HW2.truncate("Is this homework fun?", 10) ==> "Is this"
+HW2.truncate("Is this homework fun?", 17) ==> "Is this homework"
+HW2.truncate("      Hi      ", 1)         ==> "      Hi"
+HW2.truncate("     excessively long", 10) ==> "     excessively"
+</pre>
+</p></li>
+
+<li><p><tt>padString</tt>: Takes two parameters, a <tt>String</tt> and an <tt>int</tt>, and returns a <tt>String</tt>.  The returned
+<tt>String</tt> has extra spaces added <em>between</em> words so that the length of the
+resulting <tt>String</tt> is equal to the value of the <tt>int</tt> parameter.</p>
+<p>All extra spaces must be added <em>between</em> words.  There should be no extra spaces added
+to the front or back of the <tt>String</tt>.  So, no extra spaces should be added if there are fewer than 2 words in the string.  The extra spaces need to be added <em>evenly</em>.
+For example, if you need to add 8 spaces between 4 words, one pair of words should have two spaces
+added between them, and the other pairs should have 3 spaces added between them.  Finally, to
+help with grading, if there is an unequal number of spaces to add, the first pairs of words
+should get the smaller number of spaces added, and the later pairs of words should get the larger
+number of spaces added.  Any whitespaces in the original input string are not removed.</p>
+<p>As with the previous methods, a "word" is any consecutive sequence of non-whitespace characters.
+<pre>
+HW2.padString("This really is fun!", 24) ==> "This  really   is   fun!"
+HW2.padString("This really is fun!", 23) ==> "This  really  is   fun!"
+</pre>
+</p></li>
+
+<li><p><tt>prettyPrint</tt>: takes a <tt>String</tt> and an <tt>int</tt> and does not return
+anything.  The method prints the <tt>String</tt> to the screen (using <tt>System.out.println</tt>)
+so that each line is exactly <tt>int</tt> characters wide, the left most character and the right
+most characters are not whitespace, and if needed extra spaces are added evenly between words
+in each line (with the later pairs of words getting the additional space when an unequal number of spaces must be added between pairs).  
+The only exception is in the case where a line contains a single word: that word
+it is printed without extra spaces added.</p>
+<p>As with the previous methods, a "word" is any consecutive sequence of non-whitespace characters.
+<pre>
+HW2.prettyPrint("This homework is demonstrating how word processors make the text in a document line up so neatly.", 25)
+This     homework      is
+demonstrating  how   word
+processors make the  text
+in a document line up  so
+neatly.
+
+HW2.prettyPrint("This homework is demonstrating how word processors make the text in a document line up so neatly.", 22)
+This    homework    is
+demonstrating how word
+processors  make   the
+text  in  a   document
+line  up  so   neatly.
+
+HW2.prettyPrint("This homework is demonstrating how word processors make the text in a document line up so neatly.", 12)
+This
+homework  is
+demonstrating
+how     word
+processors
+make     the
+text  in   a
+document
+line  up  so
+neatly.
+</pre>
+</p></li>
+
+
+<hr>
+
+<h3>V. Submitting Your Project</h3>
+<p>Submit the <tt>.java</tt> file (not the <tt>.class</tt> files or the <tt>.java~</tt> files) 
+of your class plus the testing report on Canvas.</p>
+
+</body>
+
+</html>
+
