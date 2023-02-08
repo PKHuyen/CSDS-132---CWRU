@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<title>CSDS 132: Homework Assignment 4</title>
+</head>
+
+<body>
+<h2>Programming Project 4</h2>
+<h3>Due Monday, April 25 at 11:59pm</h3>
+
+<p><strong>Because Tuesday, April 26 is Reading Day and your final exams are worth a lot more points that this project, no late
+submissions will be accepted.</strong></p>
+
+<p><em><strong>IMPORTANT:</strong> Read the
+<strong>Do's and Dont's</strong>
+in the <strong>Course Honor Policy</strong>. </em>
+</p>
+
+
+<h3>I. Overview</h3>
+
+<p>The purpose of this homework is to give you practice designing and creating a complete program.</p>
+
+<hr>
+
+<h3>II. Code Readability (20% of your project grade)</h3>
+
+<p>To receive the full readability marks, your code must follow the following guideline:
+<ul>
+<li>All variables (fields, parameters, local variables) must be given appropriate and descriptive names.</li>
+<li>All variable and method names must start with a lowercase letter.  All class names must start with an uppercase letter.</li>
+<li>The class body should be organized so that all the fields are at the top of the file, the
+constructors are next, the non-static methods next, and the static methods at the bottom with the main method last.</li>
+<li>There should not be two statements on the same line.</li>
+<li>All code must be properly indented (see page 645 of the Lewis book for an example of good style).
+    The amount of indentation is up to you, but it should be at least 2 spaces, and it must be used
+    consistently throughout the code.</li>
+<li>You must be consistent in your use of {, }.  The closing } must be on its own line and indented
+the same amount as the line containing the opening {.</li>
+<li>There must be an empty line between each method.</li>
+<li>There must be a space separating each operator from its operands as well as a space after each comma.</li>
+<li>There must be a comment at the top of the file that <strong>is in proper JavaDoc format</strong> and
+includes both your name and a description of what the class represents.  The comment should include tags for the author.
+(See Appendix J of the Lewis book of pages 249-257 of the Evans and Flanagan book.)</li>
+<li>There must be a comment directly above each method (including constructors) that <strong>is in proper JavaDoc format</strong>
+ and states <em>what</em> task the method is doing, not how it is doing it.  The comment should include
+ tags for any parameters, return values and exceptions, and the tags should include appropriate comments
+ that indicate the purpose of the inputs, the value returned, and the meaning of the exceptions.</li>
+<li>There must be a comment directly above each field that, in one line, states what the field is storing.</li>
+<li>There must be a comment either above or to the right of each non-field variable indicating what the variable is storing.  Any comments placed to the right should be aligned so they start on the same column.</li>
+<li>There must be a comment above each loop that indicates the purpose of the loop.  Ideally, the comment would
+consist of any preconditions (if they exist) and the subgoal for the loop iteration.</li>
+<li>Any code that is complicated should have a short comment either above it or aligned to the right that
+explains the logic of the code.</li>
+</ul>
+</p>
+
+<hr>
+
+<h3>III. Program Testing (20% of your project grade)</h3>
+
+<p>You are to write a test report that indicates the <em>types</em> of tests needed to thoroughly test 
+your project.  The tests should demonstrate that all parts of your code behave correctly.  Any unit of your program involving conditional statements
+will need tests that go through each branch of the execution.  Any unit of your program involving loops will need tests that cover the
+"test 0, test 1, test many" and "test first, test middle, test last" guidelines.  Your testing report should
+<em>not</em> list the actual tests and results.</p>
+
+<p>You are to have a JUnit test class or classes that implement as many of the tests as you can.
+You should have comments, names, or other indicators in your JUnit tests that easily link the JUnit tests back to the testing report.</p>
+
+<p><em>The testing report must be separate from the JUnit class.</em> In most companies, the testing document
+will be written in a style that allows both programmers and non-programmers to read it and recognize whether all the
+needed test cases were included.</p>
+
+<p><strong>Note</strong> that you will not be able to (easily) test methods involving user input or screen output with JUnit.  For these parts of your program,
+your testing report should indicate the specific tests you did to test these routines.</p>
+
+<p><strong>Note</strong>: you should have parts of your program that implement the game play and <em>do not</em> use JavaFX gadgets.
+Separating the game play from the game display will let you create JUnit tests that do not involve JavaFX gadgets.</p>
+
+<p><em>Hint:</em> Make lots of (public) helper methods for each of the different parts of the game.  That will make it much easier to design tests for your game, and
+it will make the testing shorter!</p>
+
+<hr>
+
+<h3>IV. Java Programming (60% of your grade)</h3>
+
+<p>For this project you will implement the game Tsuro.</p>
+
+<h4>Rules of the game:</h4>
+
+<p>Tsuro is a game for two to eight players played on a grid, usually 6x6.
+<em>For your project, you will need to get a game for two players working.  It will be extra credit
+to allow up to eight players.</em>  Each player is represented
+by a "stone" of a different color.  The goal of the game is to be the last stone remaining on the
+board that can move.</p>
+<p>Players take turns placing tiles on the board.  The player chooses a tile from one of three
+in their hand.  After the player plays the tile, they draw a new tile to replace the one played.
+A player may only play a tile adjacent to their
+stone piece.  Each tile contains paths connecting the different sides.  Once a player places a stone,
+<em>all</em> pieces adjacent to the tile follow the paths indicated by the tile to the end of the path.
+If a path leads to the end of the board, that player is out of the game.  Likewise, if the path causes
+two stones to run into each other, both players are out of the game.</p>
+
+<p><strong>Rule variation for our program:</strong> In the standard game, players choose their starting
+positions anywhere on the edge of the board.  In our game, we will limit that choice.
+In their first move, players 1 and 5 must play
+their first tile on the left column of the board, players 2 and 6 must place their first tile on the right
+column, players 3 and 7 must place their first tile on the top row, and players 4 and 8 must place
+their tile on the bottom row.</p>
+
+<h4>The <tt>TsuroButton</tt> class</h4>
+
+<p>Download the <tt>TsuroButton</tt> class and use it in your program.  Unless you are doing the second extra credit,
+you should not change the <tt>TsuroButton</tt> button class, and even if you are doing the extra credit, a better
+solution is to extend the <tt>TsuroButton</tt> class.</p>
+
+The <tt>TsuroButton</tt> is a <tt>JButton</tt> that will be a game tile.  The <tt>TsuroButton</tt>
+contains an icon that shows the different path drawn on the game tile.  Each path connects two
+"end points" of the tile.  The end points are numbered as:
+<pre>
+          0   1
+        +-------+
+      6 |       | 2
+        |       |
+      7 |       | 3
+        +-------+
+          4   5
+</pre>
+The <tt>TsuroButton</tt> starts as a blank tile.
+You set the paths on the tile by calling the <tt>setConnections</tt> method with an array of 8 ints.  For example, using in the array <tt>{5, 3, 7, 1, 6, 0, 4, 2}</tt>
+as input to the <tt>setConnections</tt> method produces the tile
+<img border="0" src="tile.jpg" width="81" height="80"></p>
+
+<p>You change the paths on the tile by passing in a different array, and you can erase the paths to create a blank tile by calling <tt>setConnections</tt> with value <tt>null</tt>.</p>
+
+<p>There is a static method, <tt>makeRandomConnectArray</tt> that returns an array of 8 ints that contains a random, symmetric perumtation of 0 through 7.  This array will produce a random,
+valid game tile.  You can use this method so that each player can "draw" random tiles for their hand.</p>
+
+<p>You place "stones" onto a game tile by calling the <tt>addStone</tt> method.  You give the method the
+endpoint where you want the stone to appear and the color of the stone.  For example, <tt>addStone(Color.BLUE, 3)</tt> will place a stone on the endpoint at location 3 on the tile.
+You remove a stone from a particular endpoint by calling the <tt>removeStone</tt> method.  For example, <tt>removeStone(3)</tt>.</p>
+
+<p>There are several other useful methods of <tt>TsuroButton</tt>.  The methods have JavaDoc comments, and I suggest you run JavaDoc on the file so that you can get an API page that
+you can reference as you code.</p>
+
+<h4>What you must do:</h4>
+<p>You are to create a class called <tt>Tsuro</tt> that is a JavaFX application. 
+</p>
+
+<h4>Create the board</h4>
+<p>You are to create a board by making a two dimensional grid of <tt>TsuroButton</tt>s.
+You do this by using the <tt>GridPane</tt> <em>layout manager</em>.
+</p>
+<p>You should create a 2-dimensional array of <tt>TsuroButton</tt>s and add them to the <tt>GridPane</tt>
+in the appropriate order so that the location of a button in the array corresponds to its location
+on the panel.  At the start of the game, all the <tt>TsuroButton</tt>s on the board should be blank tiles.
+</p>
+
+<h4>Create the player hands</h4>
+<p>You are to create each player's hand by creating a separate window/stage for each player.
+Choose an appropriate layout manager for the player's hand.  It can be a <tt>GridPane</tt> with a single row or it can be a 
+<tt>FlowPane</tt>.</p>
+
+<p>You should create a 1-dimensional array of <tt>TsuroButton</tt>s and add them to the layout mananger.
+Give each button a random tile, using the <tt>makeRandomConenctArray</tt> and <tt>setConnections</tt> methods of <tt>TsuroButton</tt>.
+For each tile, place a stone indicating the starting position for the player.  For player 1 place a stone at endpoint 6, 
+and for player 2 place a stone at endpoint 2.
+</p>
+
+<p>Here is a picture of what your board and player hands should look like at the start of a game:<br>
+<img border="0" src="tsuro1.jpg" width="750" height="520"></p>
+
+<h4>Implement the buttons</h4>
+<p>You should create an <tt>EventHandler</tt> for the buttons.  Recall that an
+<tt>EventHandler</tt> has a method <tt>handle</tt> that is called every time
+the button is pressed.  The <tt>handle</tt> method has a single parameter,
+<tt>ActionEvent e</tt>, and you can get the button that was pressed by using the code
+<pre>TsuroButton b = (TsuroButton)e.getSource();</pre>
+<tt>b</tt> is the button that was pressed, and you can locate this button in your
+array of buttons to determine <tt>b</tt>'s row and column.</p>
+
+<p><strong>When the button of a player hand is clicked:</strong>
+If the player hand is not the player whose turn it is, nothing should happen. </p> <p>
+
+Otherwise, if the button is not highlighted, the clicked button should be highlighted so that
+the player knows what button was clicked.  If another button was already highlighted, that button
+should have the highlight removed.  (A simple way to highlight a button is to change the background
+to yellow.)</p><p>
+
+If the clicked button is already highlighted, the tile should be rotated 90 degrees clockwise.  
+The player's stone should stay at the same endpoint because the tile is rotating, not the player starting endpoint.
+Hint: use <tt>getConnections</tt> and <tt>setConnections</tt>.</p>
+
+<p><strong>When the button of the board is clicked:</strong>
+If there is no highlighted button from the current player's hand, nothing should happen.
+</p><p>
+
+Otherwise, the game should check if a legal move location is clicked.  If it is the first move of 
+the player, the player can click anywhere in the column (or row) that the player is allowed to play.
+On all other moves, there is only one legal location for the player to play (immediately adjacent to the player's stone).  If the player does not
+click a legal location, there should be no change to the game.
+</p><p>
+
+If the player does click a legal location, the button clicked should have its game tile set to the 
+same game tile as the highlighted button of the player's hand.  All player "stones" that are adjacent
+to this new tile (not just the stone of the player placing the tile) should be moved following the path created until (1) the stone reaches a blank tile (2) the stone reaches the edge of the board, or (3) the stone hits another stone.
+Stones should not be removed from the game.
+The highlighted button from the player hand should have its highlight removed, and it should replace its
+tile with a new random game tile - using the <tt>makeRandomConnectionArray</tt> and <tt>setConnections</tt> methods.  (This will be like drawing a new tile for the hand.)
+</p><p>
+
+Each player hand displays should be adjusted so the stones on the hand in each tile are appropraitely 
+placed to indicate where the player will start from on their next turn.</p>
+
+<p>Here is a picture of what your board and player hands should look like in the middle of a game:<br>
+<img border="0" src="tsuro2.jpg" width="750" height="520"></p>
+
+<h4>Add a <tt>main</tt> method</h4>
+<p>The <tt>Tsuro</tt> class should have a <tt>main</tt> method that launches the Tsuro
+game.  With a <tt>main</tt> method, you should be able to play your game by typing:
+<pre>java Tsuro</pre>
+in the Interactions pane.  You should also allow the user to enter the
+board size and the hand size.  For example: <br>
+<tt>java Tsuro</tt> should start a game with a 6x6 grid, two players, handsize 3, <br>
+<tt>java Tsuro 7 5</tt> should start a game with a 7x5 grid, two players, handsize 3, and <br>
+<tt>java Tsuro 7 5 2</tt> should start a game with a 7x5 grid, two players, handsize 2. 
+If the user enters something other than realistic numbers, your code should
+do something appropriate, but not crash.  If you are doing the extra credit:
+<tt>java Tsuro 6</tt> should start a game with a 6x6 grid, 6 players, handsize 3 <br>
+<tt>java Tsuro 7 5 2 6</tt> should start a game with a 7x5 grid, 6 players, and handsize 2.</p>
+
+<h4>Some General Hints</h4>
+
+<p>There is a lot to do in this game so don't try to code everything at once!  Here is a suggested order:</p>
+<p>First, just get the board and hands displaying.  Try clicking on a hand button and getting it to highlight.  Then, try getting the highlight 
+to change to different buttons as you click on them.  Then try getting the highlighted button's game tile to copy to the board when you click on a 
+board button.  Then try coding the rotation when you click a highlighed button in a player hand.  Then, add the ability to change turns.</p>
+<p>Design your algorithm for moving the stones on paper before you try to code it. </p>
+<p>Create lots of helper methods.  Use inner classes.  Each helper method can be really small and do one task.  That will make it easier to handle the
+logic of the game, and you can then write JUnit tests for each helper method, and that will make it easier to test your game.</p>
+
+<hr>
+
+<h3>Extra Credit 1: (10% of the project grade)</h4>
+
+<p>Allow up to 8 players to play the game.  For this to work, when a player can no longer move, that
+player's turn should be skipped.</p>
+
+<h3>Extra Credit 2: (up to 10% of the project grade)</h3>
+
+<p>Make the board more aesthetically appealing and/or make the game more enjoyable to play. The amount of extra credit
+awarded will be based on both the coding challenge and the creativity of your changes.
+You may need to hunt through the API in order to figure out how to add
+features to your game.</p>
+
+<p><strong>IMPORTANT:</strong> If you complete an extra credit, you must put a comment with your canvas submission indicating what you did.  Otherwise we will not grade the extra credit.</p>
+</body>
+
+</html>
