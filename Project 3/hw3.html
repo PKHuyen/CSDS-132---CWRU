@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<title>CSDS 132: Homework Assignment 3</title>
+</head>
+
+<body>
+<h2>Programming Project 3</h2>
+<h3>Due Sunday, April 3 at 11:59pm</h3>
+
+
+<p><em><strong>IMPORTANT:</strong> Read the 
+<strong>Do's and Dont's</strong>
+in the <strong>Course Honor Policy</strong> found on blackboard. </em>
+</p>
+
+<h3>I. Overview</h3>
+
+<p>The theme of this assignment is to write code to process trades on a stock market.
+The purpose of the assignment is to give you practice designing a type hierarchy and using linked lists.</p>
+
+<hr>
+
+<h3>II. Code Readability (20% of your project grade)</h3>
+
+<p><strong>New for this assignment:</strong> The comments above the class or interface and above each method must be written
+in JavaDoc format.  You have been introduced to JavaDoc style commenting in the labs.  You can also find
+a description in the <em>Java in a Nutshell</em> text.  Be sure to run JavaDoc (by clicking the JavaDoc button in DrJava) and view the webpage in order to 
+verify that you have implemented the comments correctly.</p>
+
+<p>To receive the full readability marks, your code must follow the following guideline:
+<ul>
+<li>All variables (fields, parameters, local variables) must be given appropriate and descriptive names.</li>
+<li>All variable and method names must start with a lowercase letter.  All class and interface names must start with an uppercase letter.</li>
+<li>The class body should be organized so that all the fields are at the top of the file, the
+constructors are next, the non-static methods next, and the static methods at the bottom.</li>
+<li>There should not be two statements on the same line.</li>
+<li>All code must be properly indented (see page 644 of the Lewis book for an example of good style).
+    The amount of indentation is up to you, but it should be at least 2 spaces, and it must be used
+    consistently throughout the code.</li>
+<li>You must be consistent in your use of {, }.  The closing } must be on its own line and indented
+the same amount as the line containing the opening {.</li>
+<li>There must be an empty line between each method.</li>
+<li>There must be a space separating each operator from its operands as well as a space after each comma.</li>
+<li>There must be a comment at the top of the file that <strong>is in proper JavaDoc format</strong> and
+includes both your name and a description of what the class represents.  The comment should include tags for the author.</li>
+<li>There must be a comment directly above each method (including constructors) that <strong>is in proper JavaDoc format</strong>
+ and states <em>what</em> task the method is doing, not how it is doing it.  The comment should include
+ tags for any parameters, return values and exceptions, and the tags should include appropriate comments
+ that indicate the purpose of the inputs, the value returned, and the meaning of the exceptions.</li>
+<li>There must be a comment directly above each field that, in one line, states what the field is storing.</li>
+<li>There must be a comment either above or to the right of each non-field variable indicating what the variable is storing.  Any comments placed to the right should be aligned so they start on the same column.   Variables that are loop indeces do not need a comment.</li>
+<li>There must be a comment above each loop that indicates the purpose of the loop.  Ideally, the comment would
+consist of any preconditions (if they exist) and the subgoal for the loop iteration, but that is not required.</li>
+<li>Any code that is complicated should have a short comment either above it or aligned to the right that
+explains the logic of the code.</li>
+</ul>
+</p>
+
+<hr>
+
+<h3>III. Program Testing (20% of your project grade)</h3>
+
+<p><strong>New for this assignment:</strong> The testing routines should be included in a JUnit test class.
+</p>
+
+<p>You are to write a test report that indicates the <em>types</em> of tests needed to thoroughly test 
+your project.  The tests should demonstrate that all of your methods behave correctly.  Any conditional statements
+will need tests that go through each branch of the execution.  Any loops will need tests that cover the
+"test 0, test 1, test many" and "test first, test middle, test last" guidelines.  Your testing report should
+<em>not</em> list the actual tests and results.  Instead, the report should list how you have to design a test to hit each
+part of a conditional and what "test 0, test 1, test many" and "test first, test middle, test last" means in the context
+of the particular methods being tested.</p>
+
+<p>You are to have a JUnit test class or classes that implement each of the needed tests.  Comments and method
+names in your JUnit class should connect to your testing report.  
+For example, if your testing report states "<em>method <tt>xxx</tt> must be tested with string inputs of different lengths</em>", 
+then the reader should be able to go to the JUnit class and easily identify the tests that test that method on inputs of length 0, 1, and more than 1.</p>
+
+<p><em>The testing report must be separate from the JUnit class.</em> In most companies, the testing document
+will be written in a style that allows both programmers and non-programmers to read it and recognize whether all the
+needed test cases were included.</p>
+<hr>
+
+
+<h3>IV. Java Programming (60% of your grade)</h3>
+
+<p><strong>Rules for this assignment:</strong>  The program you write should contain the types below and the methods listed.  You can use any combination of classes, abstract classes, or interfaces.  You may add additional classes, abstract classes, or interfaces to the listed ones.  You may create additional methods to the listed methods.  You may use any combination of overloading or overriding of the methods to make your coding easier.</p>
+
+<p><strong>The program:</strong> Your program should contain the following types and methods.  Besides the methods listed, each type that is a class should have appropriate <tt>toString</tt> and <tt>equals</tt> methods defined for it.  
+</p> 
+<ol><li><p><tt>Trader</tt><br>
+The <tt>Trader</tt> represents an entity that is allowed to trade stocks. 
+The <tt>Trader</tt> should have the following methods:
+<ol type="a">
+  <li><tt>getName</tt><br> Takes no input and returns a <tt>String</tt>.
+      Returns the name of the trader.</li>
+  <li><tt>setName</tt><br> Takes a single <tt>String</tt> as input and returns nothing.
+      The name of the trader is changed to the input value.</li>
+</ol>
+</p></li>
+
+<li><p><tt>MarketMaker</tt><br>
+A <tt>MarketMaker</tt> is a trader that guarantees that there is a market
+for a particular stock.  The <tt>MarketMaker</tt> is required to maintain
+both a buy and a sell order for the stock whenever the market is open.  (There is a "market" for a stock if there is always someone willing to buy and someone willing to sell the stock.)
+The <tt>MarketMaker</tt> should have the following methods:
+<ol type="a">
+  <li><tt>getName</tt><br> Takes no input and returns a <tt>String</tt>.
+      Returns the name of the market maker.</li>
+  <li><tt>setName</tt><br> Takes a single <tt>String</tt> as input and returns nothing.
+      The name of the market maker is changed to the input value.</li>
+  <li><tt>getDefaultOrderSize</tt><br>
+      Takes no input and returns an <tt>int</tt> that is the default size for a market order by this market maker.</tt>
+  <li><tt>setDefaultOrderSize</tt><br>
+      Takes an <tt>int</tt> as input and returns nothing. Changes the default size for a market order by this market maker.</tt>
+  <li><tt>getPriceOffset</tt><br> takes no input and returns a <tt>double</tt>.
+Returns the price offset for this market maker.</tt>
+   <li><tt>setPriceOffset</tt><br> takes a <tt>double</tt> as input and returns nothing.  Returns the price offset for this market maker.</li>
+</ol>
+If a market maker's market order is ever sold, a new market order must be 
+created that has the default order size and price that is the sold order's price
+plus the offset (for a sell order) or the sold order's price minus the 
+offset (for a buy order). 
+</p></li>
+
+
+<li><p><tt>BuyLimitOrder</tt><br>
+A <tt>BuyLimitOrder</tt> represents a request to purchase a stock.
+The <tt>BuyLimitOrder</tt> should have the following methods:
+<ol type="a">
+  <li><tt>getStockSymbol</tt><br> takes no input and returns a <tt>char</tt>.
+    Returns the single character symbol of the stock that this order is for.  (Stock symbols are typically strings but for this assignment we will use only one character initials for the stocks.)</tt>
+  <li><tt>getNumberShares</tt><br> Takes no input and returns an <tt>int</tt>.
+    Returns the number of shares of the order.</li>
+  <li><tt>setNumberShares</tt><br> Takes a single <tt>int</tt> value as input and returns nothing.
+    The input value is the number of shares of the order.</li>
+  <li><tt>getPrice</tt><br> Takes no input and returns a <tt>double</tt>.
+    Returns the desired price per share of the order.</li>
+  <li><tt>isAllOrNone</tt><br> Takes no input and returns a <tt>boolean</tt>.
+    The method returns <tt>true</tt> if we must trade all the shares of the order.
+    The method returns <tt>false</tt> if we can trade some, but not all, of the shares of the order.</li>
+  <li><tt>isDayOrder</tt><br> Takes no input and returns a <tt>boolean</tt>. If the order is a day order, then it will expire when the market closes.  If 
+the order is not a day order, then it will remain even when the market is closed.</li>
+  <li><tt>getTrader</tt><br> Takes no input and returns a trader or market maker value.
+    The method returns the trader or market maker that placed this order. </li>
+</ol>
+</p></li>
+
+<li><p><tt>SellLimitOrder</tt><br>
+A <tt>SellLimitOrder</tt> instance represents an order to sell stock.  The <tt>SellOrder</tt>
+should have the following methods:
+<ol type="a">
+  <li><tt>getStockSymbol</tt><br> takes no input and returns a <tt>char</tt>.
+    Returns the single character symbol of the stock that this sell order is for.  </tt>
+  <li><tt>getNumberShares</tt><br> Takes no input and returns an <tt>int</tt>.
+    Returns the number of shares of the order.</li>
+  <li><tt>setNumberShares</tt><br> Takes a single <tt>int</tt> value as input and returns nothing.
+    The input value is the number of shares of the order.</li>
+  <li><tt>getPrice</tt><br> Takes no input and returns a <tt>double</tt>.
+    Returns the desired price per share of the order.</li>
+  <li><tt>isAllOrNone</tt><br> Takes no input and returns a <tt>boolean</tt>.
+    The method returns <tt>true</tt> if we must trade all the shares of the order.
+    The method returns <tt>false</tt> if we can trade some, but not all, of the shares of the order.</li>
+  <li><tt>isDayOrder</tt><br> Takes no input and returns a <tt>boolean</tt>. If the order is a day order, then it will expire when the market closes.  If 
+the order is not a day order, then it will remain even when the market is closed.</li>
+  <li><tt>getTrader</tt><br> Takes no input and returns a trader or market maker value.
+    The method returns the trader or market maker that placed this order. </li>
+</ol>
+</p></li>
+
+<li><p><tt>MarketBuyOrder</tt><br>
+A <tt>MarketBuyOrder</tt> instance represents an order to buy stock that is placed by
+a <em>market maker</em> in order to create a market for the stock.
+The <tt>MarketBuyOrder</tt> should have the following methods:
+<ol type="a">
+  <li><tt>getStockSymbol</tt><br> takes no input and returns a <tt>char</tt>.
+    Returns the single character symbol of the stock that this buy order is for.  </tt>
+  <li><tt>getNumberShares</tt><br> Takes no input and returns an <tt>int</tt>.
+    Returns the number of shares of the order.</li>
+  <li><tt>setNumberShares</tt><br> Takes a single <tt>int</tt> value as input and returns nothing.
+    The input value is the number of shares of the order.</li>
+  <li><tt>getPrice</tt><br> Takes no input and returns a <tt>double</tt>.
+    Returns the desired price per share of the order.</li>
+  <li><tt>getTrader</tt><br> Takes no input and returns the market maker that placed this order.</li>
+</ol>
+A market buy order can never be "all or none", and all market buy orders are day orders.
+</p></li>
+
+<li><p><tt>MarketSellOrder</tt><br>
+A <tt>MarketSellOrder</tt> instance represents an order to sell stock that is placed by
+a <em>market maker</em> in order to create a market for the stock.
+The <tt>MarketSellOrder</tt> should have the following methods:
+<ol type="a">
+  <li><tt>getStockSymbol</tt><br> takes no input and returns a <tt>char</tt>.
+    Returns the single character symbol of the stock that this sell order is for.  </tt>
+  <li><tt>getNumberShares</tt><br> Takes no input and returns an <tt>int</tt>.
+    Returns the number of shares of the order.</li>
+  <li><tt>setNumberShares</tt><br> Takes a single <tt>int</tt> value as input and returns nothing.
+    The input value is the number of shares of the order.</li>
+  <li><tt>getPrice</tt><br> Takes no input and returns a <tt>double</tt>.
+    Returns the desired price per share of the order.</li>
+  <li><tt>getTrader</tt><br> Takes no input and returns the market maker that placed this order.</li>
+</ol>
+A market maker sell order can never be "all or none", and all market sell orders are day orders.
+</p></li>
+
+<li><p><tt>Transaction</tt><br>
+A <tt>Transaction</tt> represents the successful trade of stock.
+The <tt>Transaction</tt> should have the
+following methods:
+<ol type="a">
+  <li><tt>getStockSymbol</tt><br> Takes no input and returns a <tt>char</tt>.
+    Returns the single character symbol of the stock that this trade transaction is for. </tt>
+  <li><tt>getNumberShares</tt><br> Takes no input and returns an <tt>int</tt>.
+    Returns the number of shares of this trade transaction.</li>
+  <li><tt>getPrice</tt><br> Takes no input and returns a <tt>double</tt>.
+    Returns the price per share this of this trade transaction.</li>
+  <li><tt>getBuyer</tt><br> Takes no input and returns the trader or market maker that purchasing the stock.</li>
+  <li><tt>getSeller</tt><br> Takes no input and returns the trader or market maker that is selling the stock.</li>
+  <li><tt>getTransactionNumber</tt> Takes no input and returns the number of this transaction.  Each transaction should have a unique number, and the numbers should be such that if one transaction occurs before another, the earlier transaction should have a smaller number.</li>
+</ol>
+</p></li>
+
+<li><p><tt>Market</tt><br>
+The <tt>Market</tt> type represents a market for a stock.
+The <tt>Market</tt> maintains all the buy and sell orders for a stock.
+The buy and sell orders should be organized as lists of <tt>LLNode</tt>s,
+and the lists should be ordered by price.  The buy orders should be from
+highest to lowest, and the sell orders should be from lowest to highest.
+The <tt>Market</tt> should have the following methods:
+<ol type="a">
+  <li><tt>getStockSymbol</tt><br> takes no input and returns a <tt>char</tt>.
+   Returns the stock symbol that this market is for.</li>
+<li><tt>getSellOrders</tt><br>
+Takes no input and returns a list of <tt>LLNode</tt> containing all the sell orders in the market.
+</li>
+<li><tt>getBuyOrders</tt><br>
+Takes no input and returns a list of <tt>LLNode</tt>s containing all the buy orders in the market.</li>
+<li><tt>getOpenOrders</tt><br>
+Takes a trader or market maker as input and returns a list of <tt>LLNode</tt>s containing all the buy and sell orders for that trader or market maker that is in the market.</li>
+  <li><tt>getCurrentBuyPrice</tt><br>Takes no input and returns a <tt>double</tt>.
+   Returns the highest price of a buy order in the market that is not an "all or nothing" order.</li>
+  <li><tt>getCurrentSellPrice</tt><br>Takes no input and returns a <tt>double</tt>.
+   Returns the lowest price of a sell order in the market that is not an "all or nothing" order.</li>
+  <li><tt>isOpen</tt><br>Takes no input and returns a <tt>boolean</tt>.
+   Returns <tt>true</tt> if market contains both a MarketBuyOrder and a MarketSellOrder.  Returns <tt>false</tt> otherwise.</li>
+  <li><tt>isValidOrder</tt><br>Takes an order and returns a <tt>boolean</tt>.
+The method returns <tt>true</tt> if this is a valid order for the market.
+For an order to be valid, it must be for the same stock symbol as the market.
+In addition, if the order is a buy order and not a market buy order, the price
+of the order must not be higher than the highest market sell order, and if the 
+order is a sell order and not a market sell order, the price must not be
+lower than the lowest market buy order in the market.</li>
+  <li><tt>addOrder</tt><br> Takes a an order and returns nothing.
+          If the order's stock symbol does not match the market's stock symbol,
+an appropriate exception should be thrown.
+          Otherwise the order is placed into the appropriate list of orders,
+and it should be placed in the appropriate position by price.
+             </li>
+<li><tt>removeOrder</tt><br>
+Takes an order and if there is an order in the market with the same stock symbol,
+ price, number of shares, and trader or market maker, that order is removed from the market.</li>
+  <li><tt>matchingOrders</tt><br>Takes two orders as
+   returns a <tt>boolean</tt>.  The orders must be a buy order and a sell order.
+The order can be limit orders or market orders.
+  The method should return <tt>true</tt> if the 
+           buy order's price is greater than or equal to the sell order's price, and
+           if either order is <em>all or none</em>, the the other order must have a number of shares
+           that is equal to or larger than the <em>all or none</em> order's number of shares.</li>
+  <li><tt>placeOrder</tt><br>Takes an order as input and returns a list of
+   <tt>Transaction</tt>s (a list of <tt>LLNode</tt>s containing <tt>Transaction</tt>s). The method should do the following:
+    <ol><li>If the market is not open or if the order is not a valid order, the method should throw an appropriate exception.</li>
+        <li>Next, the method should use the <tt>matchingOrders</tt> method to compare the 
+            input order against the market's list of orders in order of price.
+            If the input is a buy order, then it should compare the order to
+            the sell orders from the lowest price to the highest, and if the 
+            input is a sell order, then it should compare the order to the
+            buy orders from highest price to lowest.
+            If there is no <em>match</em> found, the method 
+	    the method should call <tt>addOrderToMarket</tt> with the order and return <tt>null</tt>.</li>
+         <li>Otherwise, the method should create a <tt>Transaction</tt> using the input order and the
+             first order in the market for which <tt>matchingOrders</tt> returned <tt>true</tt>.  This other order that matches with the input order is called the <em>matching order</em>.</p>
+           <p>The new <tt>Transaction</tt> should have the stock symbol, buyer, and 
+           seller set according to the orders, and the price of the transaction
+           is the price of the input order.  The number of shares of the transaction
+	   is the lesser of the number of shares of the input order and the matching order.</p>
+           <p>If the number of shares of the matching order is less than or equal to the transaction shares, the matching order is removed from the market.
+If the matching order was a market order, then a new market order for this stock and market maker is created.  (I.e. if a MarketBuyOrder is removed then a new MarketBuyOrder is created and if a MarketSellOrder is removed then a new MarketSellOrder is created.)  The number of shares should be the market maker's default order size,
+ and the price of the new order should be the price of the removed order plus the market maker's price offset (if this is a sell order) or minus the price offset (if this is a buy order).  The new order is then added to the market.</p>
+           <p>If the number of shares of the matching order is larger than the transaction shares, the number of shares of the matching order is reduced by the transaction number of shares and the order stays in the market.</p>
+           <p>If the number of shares of the input order is larger than the matching order, the number of shares of the input order is reduced by the transaction amount.  The process then repeats to see if the input order with reduced shares can be matched to any other order in the market.  If the matching order was a market order, the new market order must be added to the market before repeating the search so that it could be possible to match the input order to the new market order.</p>
+<p>If the number of shares of the input order is smaller than or equal to the 
+matching order, then the search stops and a list of <tt>LLNode</tt>s containing all <tt>Transaction</tt> instances created by the loop is returned.</p>
+           </li> 
+           </ol></li>
+</p></li>
+<li><tt>closeMarket</tt><br>
+All market maker orders are removed from the market and any day order is removed
+from the market.</li>
+</ol>
+</p></li>
+</ol>
+
+<h3>Extra Credit:</h3>
+
+<p>Write an extra class <tt>StockMarket</tt> that has a <tt>main</tt> method.  The main method should create at leat three 
+instances of a <tt>Market</tt> for three different stocks and three different <tt>MarketMaker</tt>s.
+The main method should then allow the user to type in commands into a terminal or the interactions pane to manipulate the
+markets (using the <tt>Scanner</tt> class), and the results should be output using <tt>System.out.println</tt>.</p>
+<p>Some commands that you should implement are <em>open</em> that opens the markets by creating market buy and market sell orders
+for each of the market makers in each of the markets, <em>create trader</em> creates a new trader for the market, and <em>close</em>
+closes the market.  Other commands should create buy and sell orders for the traders (including the market makers), list the current
+prices of the stocks and list the current open orders by stock and list the current open orders by trader (that shows all open orders for all stocks).</p>
+<p>Here are some examples:</p>
+<pre>
+> create trader Lee
+Trader Lee created.
+> open markets
+Markets for stocks F, T, and X are created.
+> get price X
+X has current buy price of 37.0 and sell price of 38.0
+> get buy orders X
+Buy 100 shares X at price 37.0 by GoldmanSachs
+Buy 100 shares X at price 36.5 by Merrill
+Buy 200 shares X at price 36.4 by MorganStanley
+> Lee buy 500 X 38.0 allornone
+Creating buy order for 500 shares X at price 38.0
+> get price X
+X has current buy price of 37.0 and sell price of 38.0
+> get buy orders X
+Buy 500 shares X at price 38.0 by Lee (All or None)
+Buy 100 shares X at price 37.0 by GoldmanSachs
+Buy 100 shares X at price 36.5 by Merrill
+Buy 200 shares X at price 36.4 by MorganStanley
+> create trader Mariah
+Trader Mariah created
+> Mariah sell 400 X 36.5 day
+Creating sell order for 400 shares X at price 36.5
+Mariah sold 100 shares of X at price 36.5
+GoldmanSachs bought 100 shares of X at price 36.5
+Mariah sold 100 shares of X at price 36.5
+Merrill bought 100 shares of X at price 36.5
+> get buy orders X
+Buy 500 shares X at price 38.0 by Lee (All or None)
+Buy 200 shares X at price 36.4 by MorganStanley
+Buy 100 shares X at price 36.0 by GoldmanSachs
+Buy 100 shares X at price 35.5 by Merrill
+> get sell orders X
+Sell 200 shares X at price 36.5 by Mariah
+Sell 100 shares X at price 38.0 by Merrill
+Sell 100 shares X at price 38.2 by GoldmanSachs
+Sell 100 shares X at price 40.0 by MorganStanley
+> Mariah sell 100 A 40.0 day
+There is no market for A.
+> Mariah remove sell 200 X 36.5
+Sell 200 shares X at price 36.5 by Mariah removed
+> get sell orders X
+Sell 100 shares X at price 38.0 by Merrill
+Sell 100 shares X at price 38.2 by GoldmanSachs
+Sell 100 shares X at price 40.0 by MorganStanley
+> Merrill marketsell 100 X 37.5
+Creating market sell order for 100 shares X at price 37.5
+> Merill remove marketsell 100 X 38.0
+Market Sell 100 shares X at price 38.0 by Merrill removed
+> get sell orders X
+Sell 100 shares X at price 37.5 by Merrill
+Sell 100 shares X at price 38.2 by GoldmanSachs
+Sell 100 shares X at price 40.0 by MorganStanley
+> get price X
+X has current buy price of 36.4 and sell price of 37.5
+> get orders Merrill
+Buy 100 shares F at price 16.2 by Merrill
+Sell 100 shares F at price 17.2 by Merrill
+Buy 100 shares T at price 22.5 by Merrill
+Sell 100 shares T at price 23.0 by Merrill
+Buy 100 shares X at price 35.5 by Merrill
+Sell 100 shares X at price 37.5 by Merrill
+</pre>
+<hr>
+
+</body>
+</html>
