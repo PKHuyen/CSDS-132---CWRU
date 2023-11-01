@@ -162,7 +162,6 @@ public class Tsuro extends Application {
      * Method that finds the next tile
      * @param boardClicked the button will be checked for the location in the
     board.
-     * @param position the array of position of the button clicked on the board
      */
     public int[] thisPosition(TsuroButton boardClicked) {
         int[] position = new int[2];
@@ -394,8 +393,7 @@ public class Tsuro extends Application {
                     ; //add chosen button to boardClicked
                 }
             }
-            else { //if click other than the button that are supposed to click then
-                let the player do it again
+            else { //if click other than the button that are supposed to click then let the player do it again
                 return;
             }
         }
@@ -603,8 +601,7 @@ public class Tsuro extends Application {
         for ( ; player1Hand < this.handCard; player1Hand++) {
             Tsuro.this.button1[player1Hand] = new
                     TsuroButton(Tsuro.this.defaultSide, Tsuro.this.defaultSide);
-            Tsuro.this.button1[player1Hand].setConnections(Tsuro.this.button1[player1Hand].make
-                    RandomConnectionArray());
+            Tsuro.this.button1[player1Hand].setConnections(Tsuro.this.button1[player1Hand].makeRandomConnectionArray());
             Tsuro.this.button1[player1Hand].addStone(Color.BLUE, 6);
             EventHandler<ActionEvent> myDefaultEvent = new PlayerAction();
             Tsuro.this.button1[player1Hand].setOnAction(myDefaultEvent);
@@ -628,8 +625,7 @@ public class Tsuro extends Application {
         for ( ; player2Hand < this.handCard; player2Hand++) {
             Tsuro.this.button2[player2Hand] = new
                     TsuroButton(Tsuro.this.defaultSide, Tsuro.this.defaultSide);
-            Tsuro.this.button2[player2Hand].setConnections(Tsuro.this.button2[player2Hand].make
-                    RandomConnectionArray());
+            Tsuro.this.button2[player2Hand].setConnections(Tsuro.this.button2[player2Hand].makeRandomConnectionArray());
 //For each button, you have to have the position of the stone
             Tsuro.this.button2[player2Hand].addStone(Color.GREEN, 2);
             EventHandler<ActionEvent> myDefaultEvent = new PlayerAction();
@@ -692,8 +688,7 @@ public class Tsuro extends Application {
                                 if(Tsuro.this.getChosenButton1().equals(b)) {
                                     Tsuro.this.rotateChosenButton(0, b);
                                 }
-                                else { //change to other button, the chosen button
-                                    has to change to the newly selected one
+                                else { //change to other button, the chosen button has to change to the newly selected one
                                     removeAllStones(Tsuro.this.chosenButton1);
                                     Tsuro.this.getChosenButton1().setBackgroundColor(Color.WHITE);
                                     Tsuro.this.getChosenButton1().setRotate(0);
@@ -716,8 +711,7 @@ public class Tsuro extends Application {
                                     Tsuro.this.rotateChosenButton(1, b);
                                 }
                                 else {
-//change to other button, the choseen button
-                                    has to change to the newly selected one
+//change to other button, the choseen button has to change to the newly selected one
                                     removeAllStones(Tsuro.this.getChosenButton2());
                                     Tsuro.this.getChosenButton2().setBackgroundColor(Color.WHITE);
                                     Tsuro.this.getChosenButton2().setRotate(0);
@@ -740,8 +734,7 @@ public class Tsuro extends Application {
             try {
                 TsuroButton boardClicked = (TsuroButton)event.getSource();
                 if(Tsuro.this.numTurn == 1) { //The first turn of the player 1
-                    if (Tsuro.this.getChosenButton1() == null) { //this means the
-                        button is in board, do nothing, have to choose player's button first
+                    if (Tsuro.this.getChosenButton1() == null) { //this means the button is in board, do nothing, have to choose player's button first
                     }
                     else if (Tsuro.this.getChosenButton1() != null) {
                         for(int index = 0; index < Tsuro.this.handCard; index++) {
@@ -757,8 +750,7 @@ public class Tsuro extends Application {
                                         Tsuro.this.bButton[boardRow]
                                                 [boardCol].addStone(Color.BLUE, Tsuro.this.getChosenButton1().getConnections()[6]);
                                         Tsuro.this.setCurrentBlue(Tsuro.this.getChosenButton1().getConnections()[6]);
-                                        Tsuro.this.getChosenButton1().setConnections(Tsuro.this.getChosenButton1().makeRand
-                                                omConnectionArray());
+                                        Tsuro.this.getChosenButton1().setConnections(Tsuro.this.getChosenButton1().makeRandomConnectionArray());
                                         Tsuro.this.getChosenButton1().setBackgroundColor(Color.WHITE);
                                         removeAllStones(Tsuro.this.getChosenButton1());
                                         Tsuro.this.getChosenButton1().addStone(Color.BLUE, 6);
@@ -796,8 +788,7 @@ public class Tsuro extends Application {
                                                 [boardCol].addStone(Color.GREEN, Tsuro.this.getChosenButton2().getConnections()
                                                 [2]);
                                         Tsuro.this.setCurrentGreen(Tsuro.this.getChosenButton2().getConnections()[2]);
-                                        Tsuro.this.getChosenButton2().setConnections(Tsuro.this.getChosenButton2().makeRand
-                                                omConnectionArray());
+                                        Tsuro.this.getChosenButton2().setConnections(Tsuro.this.getChosenButton2().makeRandomConnectionArray());
                                         Tsuro.this.getChosenButton2().setBackgroundColor(Color.WHITE);
                                         removeAllStones(Tsuro.this.getChosenButton2());
                                         Tsuro.this.getChosenButton2().setRotate(0);
